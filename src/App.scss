@@ -1,0 +1,29 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.main-content {
+  position: relative;
+  padding: 4rem 2rem;
+  display: flex;
+  gap: 1rem;
+  border: 1px solid grey;
+  border-radius: 3px;
+
+  .controls {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1rem;
+  }
+}
+
+////////
+
+body {
+  font-family: sans-serif;
+}
+
