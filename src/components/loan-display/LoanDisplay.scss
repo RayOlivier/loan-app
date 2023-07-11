@@ -1,9 +1,8 @@
 .loan-card{
     position: relative;
+    max-width: 500px;
 
     &__controls {
-        // position: absolute;
-        // right: 0;
         width: 100%;
         display: flex;
         justify-content: flex-end;
