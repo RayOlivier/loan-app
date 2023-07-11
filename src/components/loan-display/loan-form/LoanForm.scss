@@ -1,6 +1,53 @@
+@use '../../../styles/variables' as *;
+
 .loan-form {
     &__field {
+        margin-bottom: 1rem;
+    }
+
+    &__labelled-input {
         display: flex;
+        // flex: 1 1 1;
         justify-content: space-between;
+        align-items: center;
+        align-items: end;
+        gap: 1rem;
+
+        // border-bottom: thin rgb(114, 0, 127) solid;
+        font-size: $text-med;
+        line-height: 1.2;
+    }
+
+
+    &__input-label {
+        flex: 1;
+        text-align: left;
+        
+    }
+
+    &__input {
+        // padding-left: 3rem;
+        flex: 1;
+
+    }
+
+    &__checkbox {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    &__submit {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__submit-button {
+        font-size: $text-med;
+        padding: 0.5rem;
+    }
+
+    &__error-message {
+        // color: red;
+        color: $error-text;
     }
 }
