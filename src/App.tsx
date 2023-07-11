@@ -9,11 +9,10 @@ import '@kor-ui/kor/kor-styles.css';
 declare global {
 	namespace JSX {
 		interface IntrinsicElements {
-			// 'wc-title': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-			'my-element': any;
 			'kor-button': any;
 			'kor-card': any;
-			'lc-editable-title': any;
+			'kor-checkbox': any;
+			'kor-input': any;
 		}
 	}
 }
@@ -54,7 +53,7 @@ const App = () => {
 				</div>
 				{loans &&
 					loans.map(loan => {
-						return <LoanDisplay cardInfo={loan} deleteLoanCard={deleteCard}></LoanDisplay>;
+						return <LoanDisplay cardInfo={loan} deleteLoanCard={deleteCard} key={loan.id}></LoanDisplay>;
 					})}
 			</div>
 		</>
