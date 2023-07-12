@@ -41,9 +41,16 @@ const LoanForm = ({ handleFormSubmit }: LoanFormProps) => {
 				<div className="loan-form__field">
 					<div className="loan-form__labelled-input">
 						<span className="loan-form__input-label">Car Price:</span>
-						<span className="loan-form__input">
-							<kor-input type="number" step={1000} min={0} max={999000} {...register('carPrice', { required: true, valueAsNumber: true })} no-clear />
-						</span>
+
+						<kor-input
+							class="loan-form__input"
+							type="number"
+							step={1000}
+							min={0}
+							max={999000}
+							{...register('carPrice', { required: true, valueAsNumber: true })}
+							no-clear
+						/>
 					</div>
 					{errors.carPrice && <span className="loan-form__error-message">This field is required</span>}
 				</div>
@@ -51,9 +58,16 @@ const LoanForm = ({ handleFormSubmit }: LoanFormProps) => {
 				<div className="loan-form__field">
 					<div className="loan-form__labelled-input">
 						<span className="loan-form__input-label">Term (Months):</span>
-						<span className="loan-form__input">
-							<kor-input type="number" step={12} min={12} max={120} {...register('termMonths', { required: true, valueAsNumber: true })} no-clear />
-						</span>
+
+						<kor-input
+							class="loan-form__input"
+							type="number"
+							step={12}
+							min={12}
+							max={120}
+							{...register('termMonths', { required: true, valueAsNumber: true })}
+							no-clear
+						/>
 					</div>
 					{errors.termMonths && <span className="loan-form__error-message">This field is required</span>}
 				</div>
@@ -61,9 +75,16 @@ const LoanForm = ({ handleFormSubmit }: LoanFormProps) => {
 				<div className="loan-form__field">
 					<div className="loan-form__labelled-input">
 						<span className="loan-form__input-label">Interest Rate:</span>
-						<span className="loan-form__input">
-							<kor-input type="number" step={0.25} min={0} max={100} {...register('interestRate', { required: true, valueAsNumber: true })} no-clear />
-						</span>
+
+						<kor-input
+							class="loan-form__input"
+							type="number"
+							step={0.25}
+							min={0}
+							max={100}
+							{...register('interestRate', { required: true, valueAsNumber: true })}
+							no-clear
+						/>
 					</div>
 					{errors.interestRate && <span className="loan-form__error-message">This field is required</span>}
 				</div>
@@ -71,9 +92,16 @@ const LoanForm = ({ handleFormSubmit }: LoanFormProps) => {
 				<div className="loan-form__field">
 					<div className="loan-form__labelled-input">
 						<span className="loan-form__input-label">Down Payment:</span>
-						<span className="loan-form__input">
-							<kor-input type="number" step={1000} min={0} max={999000} {...register('downPayment', { required: true, valueAsNumber: true })} no-clear />
-						</span>
+
+						<kor-input
+							class="loan-form__input"
+							type="number"
+							step={1000}
+							min={0}
+							max={999000}
+							{...register('downPayment', { required: true, valueAsNumber: true })}
+							no-clear
+						/>
 					</div>
 					{errors.downPayment && <span className="loan-form__error-message">This field is required</span>}
 				</div>
@@ -81,9 +109,16 @@ const LoanForm = ({ handleFormSubmit }: LoanFormProps) => {
 				<div className="loan-form__field">
 					<div className="loan-form__labelled-input">
 						<span className="loan-form__input-label">Sales Tax:</span>
-						<span className="loan-form__input">
-							<kor-input type="number" step={0.25} min={0} max={100} {...register('salesTax', { required: true, valueAsNumber: true })} no-clear />
-						</span>
+
+						<kor-input
+							class="loan-form__input"
+							type="number"
+							step={0.25}
+							min={0}
+							max={100}
+							{...register('salesTax', { required: true, valueAsNumber: true })}
+							no-clear
+						/>
 					</div>
 					{errors.salesTax && <span className="loan-form__error-message">This field is required</span>}
 				</div>
@@ -93,10 +128,8 @@ const LoanForm = ({ handleFormSubmit }: LoanFormProps) => {
 						<span className="loan-form__input-label">
 							Tile, Registration, <br /> and Other Fees:
 						</span>
-						{/* <input type="number" min={0} {...register('otherFees', { valueAsNumber: true })} /> */}
-						<span className="loan-form__input">
-							<kor-input type="number" min={0} max={999000} {...register('otherFees', { valueAsNumber: true })} no-clear />
-						</span>
+
+						<kor-input class="loan-form__input" type="number" min={0} max={999000} {...register('otherFees', { valueAsNumber: true })} no-clear />
 					</div>
 				</div>
 

@@ -4,7 +4,22 @@
 
     &__controls {
         width: 100%;
+        position: absolute;
+        right: 1rem;
         display: flex;
         justify-content: flex-end;
+    }
+
+    &__delete-button {
+        height: 18px;
+        width: 18px;
+
+        .delete-icon {
+            font-size: 18px;   
+        }
+    }
+
+    &__title {
+        margin: 0 0 1rem 0;
     }
 }

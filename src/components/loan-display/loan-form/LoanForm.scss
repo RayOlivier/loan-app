@@ -2,20 +2,16 @@
 
 .loan-form {
     &__field {
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
     }
 
     &__labelled-input {
         display: flex;
-        // flex: 1 1 1;
         justify-content: space-between;
         align-items: center;
-        align-items: end;
         gap: 1rem;
-
-        // border-bottom: thin rgb(114, 0, 127) solid;
         font-size: $text-med;
-        line-height: 1.2;
+        line-height: 1.15;
     }
 
 
@@ -26,8 +22,9 @@
     }
 
     &__input {
-        // padding-left: 3rem;
+
         flex: 1;
+        min-height: 32px;
 
     }
 
@@ -42,12 +39,12 @@
     }
 
     &__submit-button {
-        font-size: $text-med;
-        padding: 0.5rem;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 0.25rem 1rem;
     }
 
     &__error-message {
-        // color: red;
         color: $error-text;
     }
 }
