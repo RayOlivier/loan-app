@@ -12,6 +12,7 @@ declare global {
 			'kor-button': any;
 			'kor-card': any;
 			'kor-checkbox': any;
+			'kor-icon': any;
 			'kor-input': any;
 		}
 	}
