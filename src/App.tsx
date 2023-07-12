@@ -1,10 +1,8 @@
-import './App.scss';
 import React, { useState } from 'react';
 import LoanDisplay from './components/loan-display/LoanDisplay';
-// include bundle through module import
 import '@kor-ui/kor';
-// if using JS, css can also be imported. if using TS, use html stylesheet as shown below
 import '@kor-ui/kor/kor-styles.css';
+import './App.scss';
 
 declare global {
 	namespace JSX {
@@ -47,15 +45,19 @@ const App = () => {
 
 	return (
 		<>
-			<h1>Loan Calculator</h1>
 			<div className="main-content">
-				<div className="controls">
-					<kor-button onClick={addNewCard} icon="add"></kor-button>
+				<div className="main-content__header">
+					<h1>Loan Calculator</h1>
+					<div className="controls">
+						<kor-button onClick={addNewCard} icon="add" {...(loans.length >= 3 ? { disabled: 'true' } : {})}></kor-button>
+					</div>
 				</div>
-				{loans &&
-					loans.map(loan => {
-						return <LoanDisplay cardInfo={loan} deleteLoanCard={deleteCard} key={loan.id}></LoanDisplay>;
-					})}
+				<div className="main-content__loan-cards">
+					{loans &&
+						loans.map(loan => {
+							return <LoanDisplay cardInfo={loan} deleteLoanCard={deleteCard} key={loan.id}></LoanDisplay>;
+						})}
+				</div>
 			</div>
 		</>
 	);

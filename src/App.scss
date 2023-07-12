@@ -1,23 +1,35 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@use './styles/variables' as *;
+
+.app {
+  display: flex;
+  flex-direction: column;
 }
 
 .main-content {
   position: relative;
-  padding: 4rem 2rem 0;
-  display: flex;
-  gap: 1rem;
+  padding: 2rem 2rem 0;
+
   border: 1px solid grey;
   border-radius: 3px;
 
-  .controls {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 1rem;
+  &__header {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+
+    h1 {
+      margin: 0;
+      font-size: $text-xxl;
+    }
+
+    .controls {
+      margin-left: 2rem
+    }
+  }
+
+  &__loan-cards {
+    display: flex;
+    gap: 1rem;
   }
 }
 
@@ -25,5 +37,8 @@
 
 body {
   font-family: sans-serif;
+  overflow: scroll;
+  display: block !important; // overriding kor styles
+  padding: 2rem 0;
 }
 
