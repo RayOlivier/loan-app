@@ -45,7 +45,6 @@ const LoanData = ({ loanData }: LoanDataProps) => {
 	const [chartData, setChartData] = useState<ChartData<'pie'> | null>(null);
 
 	useEffect(() => {
-		console.log('USEEFFECT');
 		const loanCalcs = calculateLoan(loanData);
 		const data = {
 			labels: ['principle', 'interest'],
@@ -61,7 +60,7 @@ const LoanData = ({ loanData }: LoanDataProps) => {
 		};
 		setLoanCalculations(loanCalcs);
 		setChartData(data);
-	}, []);
+	}, [loanData]);
 
 	const getPrincipal = (loan: autoLoanForm) => {
 		if (loan.otherFeesIncluded) {
