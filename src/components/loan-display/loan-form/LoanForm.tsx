@@ -113,7 +113,7 @@ const LoanForm = ({ handleFormSubmit }: LoanFormProps) => {
 						<kor-input
 							class="loan-form__input"
 							type="number"
-							step={0.25}
+							step={1}
 							min={0}
 							max={100}
 							{...register('salesTax', { required: true, valueAsNumber: true })}
