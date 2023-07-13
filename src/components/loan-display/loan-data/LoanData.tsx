@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import './LoanData.scss';
 import { autoLoanForm } from '../loan-form/LoanForm';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, ChartData, ChartOptions } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 type LoanDataProps = {
 	loanData: autoLoanForm;
@@ -20,11 +21,46 @@ export interface loanCalculationsType {
 }
 
 const LoanData = ({ loanData }: LoanDataProps) => {
+	ChartJS.register(ArcElement, Tooltip, Legend);
+
+	const pieOptions: ChartOptions = {
+		color: '#fff',
+		plugins: {
+			datalabels: {
+				formatter: (value, ctx) => {
+					let sum = 0;
+					let dataArr = ctx.chart.data.datasets[0].data;
+					dataArr.map(data => {
+						sum += data;
+					});
+					let percentage = ((value * 100) / sum).toFixed(2) + '%';
+					return percentage;
+				},
+				color: '#fff'
+			}
+		}
+	};
+
 	const [loanCalculations, setLoanCalculations] = useState<loanCalculationsType | null>(null);
+	const [chartData, setChartData] = useState<ChartData<'pie'> | null>(null);
 
 	useEffect(() => {
 		console.log('USEEFFECT');
-		setLoanCalculations(calculateLoan(loanData));
+		const loanCalcs = calculateLoan(loanData);
+		const data = {
+			labels: ['principle', 'interest'],
+			datasets: [
+				{
+					label: '$',
+					data: [loanCalcs.principal, loanCalcs.totalInterest],
+					backgroundColor: ['rgba(54, 162, 235, 0.5)', 'rgba(255, 99, 132, 0.5)'],
+					borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'],
+					borderWidth: 1
+				}
+			]
+		};
+		setLoanCalculations(loanCalcs);
+		setChartData(data);
 	}, []);
 
 	const getPrincipal = (loan: autoLoanForm) => {
@@ -102,17 +138,7 @@ const LoanData = ({ loanData }: LoanDataProps) => {
 				</div>
 				<div>Total Cost: ${loanCalculations && getUSD(loanCalculations?.totalCost)}</div>
 			</div>
-			{loanCalculations && (
-				<div className="loan-data__chart">
-					{/* <Pie
-						data={[
-							getTotalLoan(loanData).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) -
-								getTotalInterest(loanData).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
-							getTotalInterest(loanData).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-						]}
-					/> */}
-				</div>
-			)}
+			{loanCalculations && <div className="loan-data__chart">{chartData && <Pie data={chartData} options={pieOptions} plugins={[ChartDataLabels]} />}</div>}
 		</div>
 	);
 };
