@@ -11,6 +11,9 @@
 
   border: 1px solid grey;
   border-radius: 3px;
+  min-height: 100%;
+
+  margin: 2rem 0;
 
   &__header {
     display: flex;
@@ -40,5 +43,9 @@ body {
   overflow: scroll;
   display: block !important; // overriding kor styles
   padding: 2rem 0;
+}
+
+#root {
+  min-height: 150%;
 }
 
