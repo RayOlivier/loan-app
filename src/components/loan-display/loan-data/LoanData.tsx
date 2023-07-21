@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import './LoanData.scss';
-import { autoLoanForm } from '../loan-form/LoanForm';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, ChartData, ChartOptions } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import useAutoLoanCalc from '../../../hooks/useAutoLoanCalc';
+import { autoLoanForm } from '../../../types';
 
 type LoanDataProps = {
 	loanData: autoLoanForm;

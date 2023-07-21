@@ -1,23 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import React from 'react';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import './LoanForm.scss';
-
-export interface autoLoanForm {
-	carPrice: number;
-	termMonths: number;
-	interestRate: number;
-	downPayment: number;
-	salesTax: number;
-	otherFees: number;
-	otherFeesIncluded: boolean;
-}
+import { autoLoanForm } from '../../../types';
 
 type LoanFormProps = {
 	handleFormSubmit: CallableFunction;
+	loanData: autoLoanForm | null;
 };
 
-const LoanForm = ({ handleFormSubmit }: LoanFormProps) => {
+const LoanForm = ({ handleFormSubmit, loanData }: LoanFormProps) => {
 	const {
 		control,
 		register,
@@ -28,13 +20,28 @@ const LoanForm = ({ handleFormSubmit }: LoanFormProps) => {
 			carPrice: 10000,
 			termMonths: 60,
 			interestRate: 5,
-			downPayment: 1000,
+			downPayment: 0,
 			salesTax: 6.25,
 			otherFees: 2200,
 			otherFeesIncluded: false
+			// carPrice: loanData?.carPrice || 10000,
+			// termMonths: loanData?.termMonths || 60,
+			// interestRate: loanData?.interestRate || 5,
+			// downPayment: loanData?.downPayment || 0,
+			// salesTax: loanData?.salesTax || 6.25,
+			// otherFees: loanData?.otherFees || 2200,
+			// otherFeesIncluded: loanData?.otherFeesIncluded || false
 		}
 	});
 	const onSubmit: SubmitHandler<autoLoanForm> = data => handleFormSubmit(data);
+
+	useEffect(() => {
+		console.log('FORM USEEFFECT');
+		if (loanData) {
+			console.log('there is data');
+		}
+	}, []);
+
 	return (
 		<div>
 			<form onSubmit={handleSubmit(onSubmit)}>

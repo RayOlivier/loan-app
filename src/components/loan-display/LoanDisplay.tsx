@@ -1,11 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import './LoanDisplay.scss';
-import LoanForm, { autoLoanForm } from './loan-form/LoanForm';
+import LoanForm from './loan-form/LoanForm';
 import LoanData from './loan-data/LoanData';
+import { autoLoanForm, loanType } from '../../types';
 
-const LoanDisplay = ({ cardInfo, deleteLoanCard }: any) => {
+type LoanDisplayProps = {
+	cardInfo: loanType;
+	deleteLoanCard: CallableFunction;
+	updateLoanCard: CallableFunction;
+};
+
+const LoanDisplay = ({ cardInfo, deleteLoanCard, updateLoanCard }: LoanDisplayProps) => {
 	const [loanData, setLoanData] = useState<autoLoanForm | null>(null);
+
+	useEffect(() => {
+		if (cardInfo.data) {
+			setLoanData(cardInfo.data);
+		}
+	}, []);
+
+	const handleFormChanges = (data: autoLoanForm) => {
+		console.log('handling form', data);
+		setLoanData(data);
+		updateLoanCard(cardInfo.id, data);
+	};
+
 	return (
 		<kor-card class="loan-card">
 			<div className="loan-card__controls">
@@ -15,7 +35,7 @@ const LoanDisplay = ({ cardInfo, deleteLoanCard }: any) => {
 			</div>
 			<h2 className="loan-card__title">{cardInfo?.name}</h2>
 
-			<LoanForm handleFormSubmit={(data: autoLoanForm) => setLoanData(data)}></LoanForm>
+			<LoanForm handleFormSubmit={(data: autoLoanForm) => handleFormChanges(data)} loanData={loanData}></LoanForm>
 			{loanData && <LoanData loanData={loanData}></LoanData>}
 		</kor-card>
 	);

@@ -3,6 +3,8 @@ import LoanDisplay from './components/loan-display/LoanDisplay';
 import '@kor-ui/kor';
 import '@kor-ui/kor/kor-styles.css';
 import './App.scss';
+import { autoLoanForm, loanType } from './types';
+// import { autoLoanForm } from './components/loan-display/loan-form/LoanForm';
 
 declare global {
 	namespace JSX {
@@ -16,14 +18,79 @@ declare global {
 	}
 }
 
-export interface loanType {
-	name: string;
-	id: number;
-}
-
 const App = () => {
+	const testLoans = [
+		{
+			carPrice: 10000,
+			termMonths: 60,
+			interestRate: 4,
+			downPayment: 1000,
+			salesTax: 6.25,
+			otherFees: 2200,
+			otherFeesIncluded: false
+		},
+		{
+			carPrice: 12000,
+			termMonths: 60,
+			interestRate: 5,
+			downPayment: 1000,
+			salesTax: 6.25,
+			otherFees: 2200,
+			otherFeesIncluded: false
+		},
+		{
+			carPrice: 15000,
+			termMonths: 60,
+			interestRate: 8,
+			downPayment: 1000,
+			salesTax: 6.25,
+			otherFees: 2200,
+			otherFeesIncluded: false
+		}
+	];
 	// @TODO: try to pull loans from local storage first
-	const [loans, setLoans] = useState<loanType[]>([{ name: 'Loan 1', id: 0 }]);
+	// const [loans, setLoans] = useState<loanType[]>([{ name: 'Loan 1', id: 0 }]);
+	const [loans, setLoans] = useState<loanType[]>([
+		{
+			name: 'Loan 1',
+			id: 0,
+			data: {
+				carPrice: 15000,
+				termMonths: 60,
+				interestRate: 5,
+				downPayment: 1000,
+				salesTax: 6.25,
+				otherFees: 2200,
+				otherFeesIncluded: true
+			}
+		},
+		{
+			name: 'Loan 2',
+			id: 1,
+			data: {
+				carPrice: 12000,
+				termMonths: 60,
+				interestRate: 6,
+				downPayment: 1000,
+				salesTax: 6.25,
+				otherFees: 2200,
+				otherFeesIncluded: true
+			}
+		},
+		{
+			name: 'Loan 3',
+			id: 2,
+			data: {
+				carPrice: 10000,
+				termMonths: 60,
+				interestRate: 5,
+				downPayment: 1000,
+				salesTax: 6.25,
+				otherFees: 2200,
+				otherFeesIncluded: true
+			}
+		}
+	]);
 
 	const addNewCard = () => {
 		let newCards = [...loans];
@@ -33,12 +100,24 @@ const App = () => {
 	};
 
 	const deleteCard = (id: number) => {
-		console.log('loans', [...loans]);
+		console.log('DELETE loans', [...loans]);
 		console.log('id', id);
 		const cardPosition = loans.findIndex(card => card.id === id);
 		console.log('cardposition', cardPosition);
 		let newCards = [...loans];
 		newCards.splice(cardPosition, 1);
+		console.log(newCards);
+		setLoans(newCards);
+	};
+
+	const updateLoanCard = (id: number, data: autoLoanForm) => {
+		console.log('UPDATE loans', [...loans]);
+		console.log('id', id);
+		const cardPosition = loans.findIndex(card => card.id === id);
+		const newCard = loans[cardPosition];
+		newCard.data = data;
+		let newCards = [...loans];
+		newCards.splice(cardPosition, 1, newCard);
 		console.log(newCards);
 		setLoans(newCards);
 	};
@@ -55,7 +134,7 @@ const App = () => {
 				<div className="main-content__loan-cards">
 					{loans &&
 						loans.map(loan => {
-							return <LoanDisplay cardInfo={loan} deleteLoanCard={deleteCard} key={loan.id}></LoanDisplay>;
+							return <LoanDisplay cardInfo={loan} deleteLoanCard={deleteCard} updateLoanCard={updateLoanCard} key={loan.id}></LoanDisplay>;
 						})}
 				</div>
 			</div>
