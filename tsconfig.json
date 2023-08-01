@@ -30,7 +30,7 @@
     ]
   },
 
-  "include": ["src/**/*.ts", "src/components/web-components/lit/test/test.ts", "src/hooks/useAutoLoanCalc.tsx"],
+  "include": ["src/**/*.ts", "src/components/web-components/lit/test/test.ts", "src/hooks/useAutoLoanCalc.ts", "src/hooks/useAutoLoanCalc.test.tsx"],
   "exclude": [],
  
 }

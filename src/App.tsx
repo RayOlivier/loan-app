@@ -7,6 +7,7 @@ import { autoLoanForm, loanType } from './types';
 
 // declarations for kor ui lit-element components
 declare global {
+  /* eslint-disable */
   namespace JSX {
     interface IntrinsicElements {
       'kor-button': any;
@@ -16,38 +17,10 @@ declare global {
       'kor-input': any;
     }
   }
+  /* eslint-enable */
 }
 
 const App = () => {
-  const testLoans = [
-    {
-      carPrice: 10000,
-      termMonths: 60,
-      interestRate: 4,
-      downPayment: 1000,
-      salesTax: 6.25,
-      otherFees: 2200,
-      otherFeesIncluded: false
-    },
-    {
-      carPrice: 12000,
-      termMonths: 60,
-      interestRate: 5,
-      downPayment: 1000,
-      salesTax: 6.25,
-      otherFees: 2200,
-      otherFeesIncluded: false
-    },
-    {
-      carPrice: 15000,
-      termMonths: 60,
-      interestRate: 8,
-      downPayment: 1000,
-      salesTax: 6.25,
-      otherFees: 2200,
-      otherFeesIncluded: false
-    }
-  ];
   // @TODO: try to pull loans from local storage first
 
   // default value below is temporary and for testing
@@ -94,7 +67,7 @@ const App = () => {
   ]);
 
   const addNewCard = () => {
-    let newCards = [...loans];
+    const newCards = [...loans];
     newCards.push({ name: `Loan ${loans.length + 1}`, id: Date.now() + Math.random() });
 
     setLoans(newCards);
@@ -105,7 +78,7 @@ const App = () => {
     console.log('id', id);
     const cardPosition = loans.findIndex(card => card.id === id);
     console.log('cardposition', cardPosition);
-    let newCards = [...loans];
+    const newCards = [...loans];
     newCards.splice(cardPosition, 1);
     console.log(newCards);
     setLoans(newCards);
